@@ -118,8 +118,8 @@ const GamePlay = () => {
               totalDiceNum.map((value, index) => (
                 <button
                   key={index}
-                  className={`numBox diceBtnStyle ${value === selectedNumber
-                    ? 'bg-black text-white'
+                  className={`numBox diceBtnStyle hover:bg-[#90909053] duration-300 ${value === selectedNumber
+                    ? 'bg-black text-white hover:bg-black'
                     : ''
 
                     } `}
