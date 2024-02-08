@@ -36,7 +36,7 @@ const GamePlay = () => {
       setTimeout(() => {
         clearInterval(roller);
       }, 2000)
-      
+
       // Show the result
       setTimeout(() => {
         const finalDiceNumber = randomIndex + 1; // Adding 1 to match dice number
@@ -93,12 +93,17 @@ const GamePlay = () => {
       <div className='flex flex-col items-center gap-[30px] mt-[150px] dicemt'>
         {/* Here is the html code to show the dice image */}
         <div className='flex flex-col items-center' >
-          <img
-            src={currentDice}
-            alt="Dice One"
-            className='cursor-pointer diceScImg'
-            onClick={diceImage}
-          />
+          {
+            diceArray.map((item, index) => (
+              <img
+                key={index}
+                src={item}
+                alt="Dice Img"
+                className={`cursor-pointer ${currentDice === item ? 'block' : 'hidden'}`}
+                onClick={diceImage}
+              />
+            ))
+          }
           <h3 className='font-poppins text-2xl font-medium' >Click on Dice to roll</h3>
         </div>
         <button
