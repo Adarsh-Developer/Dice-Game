@@ -63,7 +63,7 @@ const GamePlay = () => {
           });
           setCurrentScore(currentScore - 1);
         }
-      }, 2200);
+      }, 2300);
 
       setError(''); // Clear any previous errors
       setSelectedNumber(''); // Clear selected number after rolling
