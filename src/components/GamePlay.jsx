@@ -6,7 +6,7 @@ const GamePlay = () => {
   const [selectedNumber, setSelectedNumber] = useState()
 
   let scoreFromLocalStorage = localStorage.getItem('currentScore')
-  const [currentScore, setCurrentScore] = useState(scoreFromLocalStorage || 0)
+  const [currentScore, setCurrentScore] = useState(parseInt(scoreFromLocalStorage) || 0)
 
   const [showRule, setShowRule] = useState(false)
 
