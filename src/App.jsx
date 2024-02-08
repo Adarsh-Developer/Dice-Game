@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import './App.css'
 import HomePage from './components/HomePage'
 import GamePlay from './components/GamePlay'
 
