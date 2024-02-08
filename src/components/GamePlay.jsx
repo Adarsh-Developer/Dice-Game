@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
 import { dice1, dice2, dice3, dice4, dice5, dice6 } from '../assets/images'
 
 const GamePlay = () => {
   const [selectedNumber, setSelectedNumber] = useState()
 
-  const [currentScore, setCurrentScore] = useState(0)
+  let scoreFromLocalStorage = localStorage.getItem('currentScore')
+  const [currentScore, setCurrentScore] = useState(scoreFromLocalStorage || 0)
 
   const [showRule, setShowRule] = useState(false)
 
@@ -22,6 +23,11 @@ const GamePlay = () => {
   const diceImage = () => {
     if (!selectedNumber) {
       setError('You have not selected any number')
+      Swal.fire({
+        title: 'Number not selected',
+        html: '<span style="font-weight: bold; font-size: 20px">Please select a number to continue.</span>',
+        icon: 'warning',
+      });
     } else {
       // Generate a random number between 0 and 5 (for diceArray index)
       let randomIndex;
@@ -63,6 +69,41 @@ const GamePlay = () => {
       setSelectedNumber(''); // Clear selected number after rolling
     }
   }
+
+  const scoreReset = () => {
+    if (currentScore === 0) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Score Already at 0',
+        html: '<span style="font-weight: bold; font-size: 20px">Your score is already at 0. There is nothing to reset.</span>',
+      });
+    } else {
+      Swal.fire({
+        title: 'Are you sure?',
+        html: '<span style="font-weight: bold; font-size: 20px">Resetting the score will erase your current progress.</span>',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, reset it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // User confirmed, reset the score
+          setCurrentScore(0);
+          Swal.fire({
+            title: 'Reset!',
+            html: '<span style="font-weight: bold; font-size: 20px">You Score has been reset.</span>',
+            icon: 'success'
+          });
+        }
+      });
+    }
+  }
+
+  useEffect(() => {
+    localStorage.setItem('currentScore', currentScore)
+  }, [currentScore])
+
   return (
     <div className="relative w-full max-w-[100vw] flex flex-col items-center p-[50px]" >
       <div className="flex justify-between items-center h-[150px] w-full px-[50px] custombg">
@@ -108,7 +149,7 @@ const GamePlay = () => {
         </div>
         <button
           className="abNormalBtnStyle"
-          onClick={() => setCurrentScore(0)}
+          onClick={scoreReset}
         >Reset Score</button>
         <button
           className="normalBtnStyle"

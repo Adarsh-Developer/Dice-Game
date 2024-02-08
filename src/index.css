@@ -22,6 +22,9 @@
   display: none;
 }
 
+.error-icon {
+  color: red !important;
+}
 
 @media (max-width: 950px) {
   .custombg {
