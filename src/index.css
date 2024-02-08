@@ -1,3 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .diceBtnStyle {
+    @apply w-[72px] h-[72px] flex items-center justify-center border-[1.5px] font-poppins font-bold text-2xl border-black rounded-sm;
+  }
+
+  .normalBtnStyle {
+    @apply bg-black text-white rounded-[5px] font-poppins py-[10px] px-[60px] border-transparent border-2 shadow-[#00000066] font-semibold hover:bg-white hover:border-black hover:text-black duration-300 ease-in-out;
+  }
+
+  .abNormalBtnStyle {
+    @apply bg-transparent text-black rounded-[5px] font-poppins py-[10px] px-[60px] border-transparent border-2 border-black shadow-[#00000066] font-semibold hover:bg-black hover:border-transparent hover:text-white duration-300 ease-in-out;
+  }
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+
+@media (max-width: 950px) {
+  .custombg {
+    flex-direction: column;
+  }
+
+  .cvtop {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .numBox {
+    width: 50px;
+    height: 50px;
+  }
+
+  .numBoxTxt {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 450px) {
+  .boxGap {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .errorMsg {
+    font-size: 21px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .boxGap {
+    gap: 8px;
+    padding: 0 2px;
+  }
+}
+
+@media (max-width: 1290px) {
+  .mainImg {
+    width: 500px;
+  }
+}
+
+@media (max-width: 1130px) {
+  .diceGame {
+    font-size: 80px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .mainImg {
+    width: initial;
+  }
+  .startBtn {
+    align-items: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .mainImg {
+    width: 500px;
+  }
+  .homeC{
+    padding: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .mainImg {
+    width: 400px;
+  }
+  .diceGame {
+    font-size: 65px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mainImg{
+    width: 300px;
+  }
+  .diceGame {
+    font-size: 50px;
+  }
+  .plyBtn {
+    padding: 8px 50px;
+  }
+}
+
+@media (max-width: 550px) {
+  .diceScImg {
+    width: 200px;
+  }
+}

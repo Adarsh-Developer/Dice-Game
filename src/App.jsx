@@ -1,8 +1,22 @@
+import { useState } from 'react'
 import './App.css'
+import HomePage from './components/HomePage'
+import GamePlay from './components/GamePlay'
 
 function App() {
+
+  const [isGameStarted, setIsGameStarted] = useState(false)
+  
+  const toggleGamePlay = () => {
+    setIsGameStarted((prev) => !prev);
+  }
+  
   return (
-    <div className='text-red-400 bg-blue-300' >ADARSH JAIN</div>
+    <div className="">
+      {
+        isGameStarted ? <GamePlay /> : <HomePage onClick={toggleGamePlay} />
+      }
+    </div>
   )
 }
 
