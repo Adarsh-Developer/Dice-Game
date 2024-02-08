@@ -51,7 +51,7 @@ const GamePlay = () => {
             icon: 'success',
             title: 'Congratulations!',
             html: '<span style="font-weight: bold; font-size: 30px">You won!</span>',
-            timer: 2000
+            timer: 3000
           });
           setCurrentScore(currentScore + 2);
         } else {
@@ -59,7 +59,7 @@ const GamePlay = () => {
             icon: 'error',
             title: 'Oops!',
             html: '<span style="font-weight: bold; font-size: 30px">You loose!</span>',
-            timer: 2000
+            timer: 3000
           });
           setCurrentScore(currentScore - 1);
         }
