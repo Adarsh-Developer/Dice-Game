@@ -14,42 +14,54 @@ const GamePlay = () => {
 
   const [error, setError] = useState('')
 
+  const diceArray = [dice1, dice2, dice3, dice4, dice5, dice6]
+
   // Below code is to generate a random dice number and show in to the dice Image
   const [currentDice, setCurrentDice] = useState(dice1)
-  const generateRandomDice = (num) => {
-    return Math.floor(Math.random() * num) + 1
-  }
 
   const diceImage = () => {
     if (!selectedNumber) {
       setError('You have not selected any number')
-      return;
-    }
-
-    const randomNumber = generateRandomDice(6)
-
-    if (randomNumber === 1) {
-      setCurrentDice(dice1)
-    } else if (randomNumber === 2) {
-      setCurrentDice(dice2)
-    } else if (randomNumber === 3) {
-      setCurrentDice(dice3)
-    } else if (randomNumber === 4) {
-      setCurrentDice(dice4)
-    } else if (randomNumber === 5) {
-      setCurrentDice(dice5)
-    } else if (randomNumber === 6) {
-      setCurrentDice(dice6)
-    }
-
-    // Code to update the current Score....
-    if (selectedNumber === randomNumber) {
-      setCurrentScore(currentScore + 2)
     } else {
-      setCurrentScore(currentScore - 1)
-    }
+      // Generate a random number between 0 and 5 (for diceArray index)
+      let randomIndex;
 
-    setSelectedNumber('')
+      // Start scrolling animation for 2 seconds
+      const roller = setInterval(() => {
+        randomIndex = Math.floor(Math.random() * diceArray.length);
+        setCurrentDice(diceArray[randomIndex]);
+      }, 20);
+
+      // Stop scrolling after 2 seconds and check result
+      setTimeout(() => {
+        clearInterval(roller);
+      }, 2000)
+      
+      // Show the result
+      setTimeout(() => {
+        const finalDiceNumber = randomIndex + 1; // Adding 1 to match dice number
+        if (selectedNumber === finalDiceNumber) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Congratulations!',
+            html: '<span style="font-weight: bold; font-size: 30px">You won!</span>',
+            timer: 2000
+          });
+          setCurrentScore(currentScore + 2);
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            html: '<span style="font-weight: bold; font-size: 30px">You loose!</span>',
+            timer: 2000
+          });
+          setCurrentScore(currentScore - 1);
+        }
+      }, 2200);
+
+      setError(''); // Clear any previous errors
+      setSelectedNumber(''); // Clear selected number after rolling
+    }
   }
   return (
     <div className="relative w-full max-w-[100vw] flex flex-col items-center p-[50px]" >
