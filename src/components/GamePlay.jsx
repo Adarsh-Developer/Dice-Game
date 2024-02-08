@@ -140,7 +140,7 @@ const GamePlay = () => {
                 key={index}
                 src={item}
                 alt="Dice Img"
-                className={`cursor-pointer ${currentDice === item ? 'block' : 'hidden'}`}
+                className={`cursor-pointer select-none ${currentDice === item ? 'block' : 'hidden'}`}
                 onClick={diceImage}
               />
             ))
